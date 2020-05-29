@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AmlakOnline</string>
+    <string name="register">ثبت نام</string>
+    <string name="login">ورود</string>
+    <string name="NavbarClose">close</string>
+    <string name="NavbarOpen">open</string>
 </resources>
