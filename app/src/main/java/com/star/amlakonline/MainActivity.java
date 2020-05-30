@@ -7,9 +7,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.star.amlakonline.ApiConnection.ApiConnection;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
                     switch(id)
                     {
                         case R.id.nav_login:
+                            //hey sepeher you can drop this
+//                            ApiConnection apiConnection = new ApiConnection();
+//                            apiConnection.execute("http://amlakonlin.ir/api/profile","ApiToken=z9csfDrF5qCEByhsEpjALMG8PRUNbIMcwXFK95yZCpRvHAE67qewExU4xmIp");
                             Toast.makeText(MainActivity.this, "login",Toast.LENGTH_SHORT).show();break;
                         case R.id.nav_register:
                             Toast.makeText(MainActivity.this, "register",Toast.LENGTH_SHORT).show();break;
@@ -58,8 +63,5 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
         });
-
-
     }
-
 }
