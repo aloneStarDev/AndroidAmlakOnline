@@ -29,7 +29,21 @@
                 android:id="@+id/RecycleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <ProgressBar
+                android:visibility="invisible"
+                android:id="@+id/loadMoreProgressbar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@null"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </com.google.android.material.internal.BaselineLayout>
 

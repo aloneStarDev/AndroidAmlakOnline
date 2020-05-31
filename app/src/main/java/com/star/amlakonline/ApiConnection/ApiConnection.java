@@ -6,6 +6,7 @@ import android.util.Log;
 import com.star.amlakonline.MainActivity;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -18,10 +19,10 @@ import java.util.Base64;
 import static android.content.ContentValues.TAG;
 
 public class ApiConnection extends AsyncTask<String,Integer,String> {
-    private String result;
+    private AsyncResponse delegate;
 
-    public String getResult() {
-        return result;
+    public void setDelegate(AsyncResponse delegate) {
+        this.delegate = delegate;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class ApiConnection extends AsyncTask<String,Integer,String> {
                 response.append('\r');
             }
             rd.close();
-            return response.toString();
+            return StringEscapeUtils.unescapeJava(response.toString());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -79,6 +80,6 @@ public class ApiConnection extends AsyncTask<String,Integer,String> {
     @Override
     protected void onPostExecute(String s) {
         s = StringEscapeUtils.unescapeJava(s);
-        result = s;
     }
+
 }

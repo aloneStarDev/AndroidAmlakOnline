@@ -10,19 +10,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.star.amlakonline.ApiConnection.ApiConnection;
+import com.star.amlakonline.ApiConnection.FileConnection;
 import com.star.amlakonline.Model.File;
 import com.star.amlakonline.Model.FileAdapter;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -33,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private ActionBarDrawerToggle adbr;
     private ImageButton menuBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +50,7 @@ public class MainActivity extends AppCompatActivity {
         dl = findViewById(R.id.drawer_layout);
         menuBtn = findViewById(R.id.toolBarMenuBtn);
         recyclerView = findViewById(R.id.RecycleView);
-        ArrayList<File> files = new ArrayList<File>();
-        files.add(new File(1000));
-        files.add(new File(2000));
-        files.add(new File(3000));
-        files.add(new File(4000));
-        files.add(new File(5000));
-        files.add(new File(6000));
-        fileAdapter = new FileAdapter(this,files);
+        fileAdapter = new FileAdapter(this,File.loadMore());
         recyclerView.setAdapter(fileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -63,8 +65,20 @@ public class MainActivity extends AppCompatActivity {
                 if (dy < 0) {
                     Toast.makeText(MainActivity.this,"scrollup",Toast.LENGTH_SHORT).show();
                 } else if (dy > 0) {
+                    if (!recyclerView.canScrollVertically(1)){
+                        fileAdapter.addFiles(File.loadMore());
+                            findViewById(R.id.loadMoreProgressbar).setVisibility(View.VISIBLE);
+                            TimerTask timerTask = new TimerTask() {
+                                @Override
+                                public void run() {
 
-                    Toast.makeText(MainActivity.this,"scrolldown",Toast.LENGTH_SHORT).show();
+                                    findViewById(R.id.loadMoreProgressbar).setVisibility(View.INVISIBLE);
+                                }
+                            };
+                        Timer timer = new Timer("Timer");
+                        long delay = 1000L;
+                        timer.schedule(timerTask, delay);
+                    }
                 }
                 super.onScrolled(recyclerView, dx, dy);
             }

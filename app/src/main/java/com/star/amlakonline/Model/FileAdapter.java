@@ -17,8 +17,14 @@ import java.util.List;
 
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ItemViewHolder> {
     Context context;
-    List<File> files = new ArrayList<>();
-    public FileAdapter(Context context,List<File> files)
+    private List<File> files = new ArrayList<>();
+
+    public void addFiles(List<File> f) {
+        files.addAll(f);
+        notifyDataSetChanged();
+    }
+
+    public FileAdapter(Context context, List<File> files)
     {
         this.context = context;
         this.files = files;
