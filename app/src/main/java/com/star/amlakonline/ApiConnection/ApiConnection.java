@@ -80,6 +80,5 @@ public class ApiConnection extends AsyncTask<String,Integer,String> {
     protected void onPostExecute(String s) {
         s = StringEscapeUtils.unescapeJava(s);
         result = s;
-        MainActivity.res=true;
     }
 }
