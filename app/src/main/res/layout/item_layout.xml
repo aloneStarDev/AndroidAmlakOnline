@@ -4,32 +4,68 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/FileItem"
-    app:cardCornerRadius="6dp"
-    app:cardElevation="3dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:orientation="horizontal"
-        android:background="@color/colorBgDefault"
+        android:background="@drawable/item_background"
         android:padding="5dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fileLogo"
             android:src="@drawable/city"
             android:layout_width="100dp"
-            android:layout_height="100dp"/>
-        <TextView
-            android:id="@+id/fileCode"
+            android:layout_height="150dp"/>
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textAlignment="gravity"
-            android:textDirection="rtl"
-            android:textStyle="bold"
-            android:gravity="end"
-            android:textSize="25sp"/>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
 
+            <TextView
+                android:id="@+id/rahn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/ejare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/addressPu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+        </TableLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.cardview.widget.CardView>

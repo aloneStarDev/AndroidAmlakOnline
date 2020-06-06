@@ -8,15 +8,18 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
+
     <com.google.android.material.internal.BaselineLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include
-            layout="@layout/toolbar_layout"/>
+
+        <include layout="@layout/toolbar_layout" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="?android:attr/actionBarSize">
+
             <ImageView
                 android:id="@+id/gs_bottom_logo"
                 android:layout_width="match_parent"
@@ -24,33 +27,50 @@
                 android:layout_alignParentBottom="true"
                 android:adjustViewBounds="true"
                 android:src="@drawable/header"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/app_name" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecycleView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <ProgressBar
-                android:visibility="invisible"
                 android:id="@+id/loadMoreProgressbar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:indeterminate="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:background="@null"
-                />
+                android:indeterminate="true"
+                android:visibility="invisible"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="#ff0000"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/RecycleView"
+                app:menu="@menu/my_bottom_navigation_item"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
     </com.google.android.material.internal.BaselineLayout>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        app:menu="@menu/my_navigation_items" />
+        app:menu="@menu/my_navigation_items"
+        />
 </androidx.drawerlayout.widget.DrawerLayout>

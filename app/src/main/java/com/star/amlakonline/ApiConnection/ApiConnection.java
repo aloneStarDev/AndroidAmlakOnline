@@ -1,7 +1,9 @@
 package com.star.amlakonline.ApiConnection;
 
+import android.app.Notification;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.star.amlakonline.MainActivity;
 
@@ -14,17 +16,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Base64;
-
-import static android.content.ContentValues.TAG;
 
 public class ApiConnection extends AsyncTask<String,Integer,String> {
-    private AsyncResponse delegate;
-
-    public void setDelegate(AsyncResponse delegate) {
-        this.delegate = delegate;
-    }
-
+    AsyncResponse delegate;
     @Override
     protected String doInBackground(String... strings) {
         String targetURL = strings[0];
@@ -74,12 +68,19 @@ public class ApiConnection extends AsyncTask<String,Integer,String> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         values[0]++;
-        Log.d(TAG, "process thread: "+values[0]);
+        Log.d("progress:",""+values[0]);
     }
 
     @Override
     protected void onPostExecute(String s) {
-        s = StringEscapeUtils.unescapeJava(s);
+        if(delegate != null) {
+            s = StringEscapeUtils.unescapeJava(s);
+            try {
+                delegate.processFinish(s);
+            } catch (Exception e) {
+                    Toast.makeText(MainActivity.mainActivity,"لطفا اتصال خود را برسی کنید",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }
