@@ -10,5 +10,17 @@
             android:id="@+id/nav_register"
             android:icon="@drawable/user_icon"
             android:title="@string/register"/>
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/user_icon"
+            android:title="@string/register"/>
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/user_icon"
+            android:title="@string/register"/>
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/user_icon"
+            android:title="@string/register"/>
     </group>
 </menu>
